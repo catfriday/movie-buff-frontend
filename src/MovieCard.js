@@ -8,9 +8,12 @@ const MovieCard = (props) => {
 
     return(
         <div>
-
+        <div>
         <h1>{title}</h1> 
            <img src= {image} height="250px" width="200px"></img>
+           <button onClick={() => props.addToWatchList(props.movie)}>Add to Watchlist</button>
+
+        </div>
            {/* <ReactPlayer
             url={video_link} /> */}
 

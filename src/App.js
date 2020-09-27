@@ -7,12 +7,13 @@ import LogIn from './LogIn'
 
 
 const moviesUrl = 'http://localhost:3000/movies/' 
-const usersUrl = 'http://localhost:3000/users/login/'
+const loginUsersUrl = 'http://localhost:3000/users/login/'
+const usersUrl = 'http://localhost:3000/users/'
+const watchListUrl = 'http://localhost:3000/watchlists/'
 
 class App extends Component  {
 state = {
   movies: [],
-  createUser: {},
   loggedUser: {},
   loginForm: false,
   signUpForm: false,
@@ -47,8 +48,10 @@ createUser = (e) =>{
   })
 })
   .then(res => res.json())
-  .then(createUser => this.setState({
-    createUser
+  .then(loggedUser => 
+    
+    this.setState({
+    loggedUser
     })
 )
   }
@@ -56,7 +59,7 @@ createUser = (e) =>{
   logInUser = (e) => {
     e.preventDefault()
     // console.log(e.target.username.value)
-    fetch(usersUrl + e.target.username.value)
+    fetch(loginUsersUrl + e.target.username.value)
     .then(res => res.json())
     .then(loggedUser => this.setState({
       loggedUser: loggedUser
@@ -82,7 +85,21 @@ createUser = (e) =>{
     })
   }
 
-
+addToWatchList = (movie) => {
+  fetch(watchListUrl, {
+    method: "POST", 
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({
+      movie_id: movie.id,
+      user_id: this.state.loggedUser.id
+    })
+  })
+  .then(resp => resp.json())
+  .then(console.log)
+}
 
 
 
@@ -91,6 +108,7 @@ render(){
   return (
     <div className="App">
      {/* <Header /> */}
+     
       <div onClick={this.ifClicked}>
         <button onClick={this.toggleLoginForm}>Log In </button>
         
@@ -105,7 +123,7 @@ render(){
       </div>
      
      
-     <MoviePage movies={this.state.movies}/>
+     <MoviePage movies={this.state.movies} addToWatchList={this.addToWatchList}/>
      
 
     </div>
