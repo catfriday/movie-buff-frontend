@@ -9,9 +9,9 @@ const MovieCard = (props) => {
     return(
         <div>
 
-        {/* <h1>{title}</h1> 
+        <h1>{title}</h1> 
            <img src= {image} height="250px" width="200px"></img>
-           <ReactPlayer
+           {/* <ReactPlayer
             url={video_link} /> */}
 
 
@@ -32,8 +32,8 @@ const MovieCard = (props) => {
                 loadingOverlay={
                     <div className="loading-spinner-overlay" />
                 }
-            />
-            */}
+            /> */}
+           
       
            {/* <video>
                <source src={video_link}>

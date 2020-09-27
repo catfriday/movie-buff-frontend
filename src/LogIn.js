@@ -1,11 +1,12 @@
 import React from 'react'
 
-const SignUp = (props) => {
+
+const LogIn = (props) => {
 
     return(
         <div>
-            <h3>Sign Up Here</h3>
-            <form onSubmit={(e)=> props.createUser(e)}>
+            <h3>Log In Here</h3>
+            <form onSubmit={(e)=> props.logIn(e)}>
                 <label>Username:</label> 
                 <input type='text' name='username'/><br/>
                 <label>Password:</label>
@@ -16,4 +17,4 @@ const SignUp = (props) => {
     )
 }
 
-export default SignUp
+export default LogIn
