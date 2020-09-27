@@ -15,7 +15,8 @@ state = {
   createUser: {},
   loggedUser: {},
   loginForm: false,
-  signUpForm: false
+  signUpForm: false,
+  ifClicked: false
 }
 
 componentDidMount(){
@@ -74,6 +75,15 @@ createUser = (e) =>{
     })
   }
 
+  ifClicked = () => {
+    console.log("hey")
+    this.setState({
+      ifClicked: true
+    })
+  }
+
+
+
 
 
 
@@ -81,14 +91,18 @@ render(){
   return (
     <div className="App">
      {/* <Header /> */}
-     <button OnClick={this.toggleLoginForm}>Log In </button>
-     
-     {this.state.loginForm
-     ? <LogIn logIn={this.logInUser} />
-     : null}
-     
-     <button onClick={this.toggleSignUpForm}>Sign Up</button>
-     <SignUp createUser={this.createUser}/>
+      <div onClick={this.ifClicked}>
+        <button onClick={this.toggleLoginForm}>Log In </button>
+        
+        {this.state.loginForm
+        ? <LogIn logIn={this.logInUser} />
+        : null}
+        
+        <button onClick={this.toggleSignUpForm}>Sign Up</button>
+        {this.state.signUpForm
+        ? <SignUp createUser={this.createUser}/>
+        :null}
+      </div>
      
      
      <MoviePage movies={this.state.movies}/>
