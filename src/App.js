@@ -4,6 +4,7 @@ import './App.css';
 import MoviePage from './MoviePage'
 import SignUp from './SignUp'
 import LogIn from './LogIn'
+import MovieForm from './MovieForm'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 
 
@@ -19,7 +20,8 @@ state = {
   loggedUser: {},
   loginForm: false,
   signUpForm: false,
-  ifClicked: false
+  ifClicked: false,
+  movieForm: false
 }
 
 componentDidMount(){
@@ -115,6 +117,38 @@ addToWatchList = (movie) => {
   .then(console.log)
 }
 
+addMovie = (e) => {
+  e.preventDefault()
+  console.log(e)
+
+  let newMovie = {
+    user_id: this.state.loggedUser.id,
+    title: e.target[0].value,
+    genre: e.target[1].value,
+    review: e.target[2].value,
+    image: e.target[3].value,
+    video_link: e.target[4].value,
+    movie_info: e.target[5].value,
+  }
+  fetch(moviesUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify(
+      newMovie
+    )
+  })
+  .then(res => res.json())
+  .then( this.setState({
+    movies: [...this.state.movies, newMovie],
+    movieForm: !this.state.form
+  })
+  )
+}
+
+
 
 
 
@@ -150,8 +184,10 @@ render(){
       <Route path='/signup' render={(routerProps) => <SignUp {...routerProps} createUser={this.createUser}/>} />
       <Route path='/login' render={(routerProps) => <LogIn {...routerProps} logIn={this.logInUser} />} />
       <Route exact path='/movies' render={(routerProps) => <MoviePage {...routerProps} movies={this.state.movies} addToWatchList={this.addToWatchList}/>} />
-     
+      <Route path ="/movies/new" render={(routerProps) => <MovieForm {...routerProps} addMovie={this.addMovie}/>} />
     </Switch> 
+
+   
     
      
 
