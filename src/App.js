@@ -7,6 +7,7 @@ import LogIn from './LogIn'
 import MovieForm from './MovieForm'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import MovieShowPage from './MovieShowPage';
+import SideBar from './SideBar'
 
 
 
@@ -29,9 +30,25 @@ componentDidMount(){
   fetch(moviesUrl)
   .then(resp => resp.json())
   .then(movies => this.setState({
-    movies
+    movies:  movies.map(movie => {return {...movie, userMovie:false}})
   }))
 }
+
+// userMovies = () => {
+
+//   let newMovies = this.state.movies.map(movie => {
+//     if (movie.user_id === this.state.loggedUser.id){
+//       return {...movie, userMovie: true}
+
+//     }
+//     return movie
+//   })
+//  this.setState({
+//    movies: newMovies
+//  })
+
+// }
+
 
 createUser = (e) =>{
   e.preventDefault()
@@ -73,38 +90,9 @@ createUser = (e) =>{
     }))
   }
 
-  toggleLoginForm = () => {
-    this.setState({
-      loginForm: true
-    })
-  }
-
-  toggleLoginFormOff = () => {
-    this.setState({
-      loginForm: false
-    })
-  }
-
-  toggleSignUpForm = () => {
-    this.setState({
-      signUpForm: true
-    })
-  }
-
-  toggleSignUpFormOff = () => {
-    this.setState({
-      signUpForm: false
-    })
-  }
-
-  ifClicked = () => {
-    // console.log("hey")
-    this.setState({
-      ifClicked: !this.state.ifClicked
-    })
-  }
 
 addToWatchList = (movie) => {
+
   fetch(watchListUrl, {
     method: "POST", 
     headers: {
@@ -162,6 +150,7 @@ render(){
 
     <div className="App">
      {/* <Header /> */}
+     <SideBar />
      
       {/* {this.state.ifClicked ? null:
       <div onClick={this.ifClicked}>
@@ -186,13 +175,10 @@ render(){
        <Switch>
       <Route path='/signup' render={(routerProps) => <SignUp {...routerProps} createUser={this.createUser}/>} />
       <Route path='/login' render={(routerProps) => <LogIn {...routerProps} logIn={this.logInUser} />} />
-      <Route exact path='/movies' render={(routerProps) => <MoviePage {...routerProps} movies={this.state.movies} addToWatchList={this.addToWatchList}/>} />
-<<<<<<< HEAD
+      <Route exact path='/movies' render={(routerProps) => <MoviePage {...routerProps} movies={this.state.movies} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser} />} />
       <Route path ="/movies/new" render={(routerProps) => <MovieForm {...routerProps} addMovie={this.addMovie}/>} />
-=======
-      <Route path='/movies/:id' render={(routerProps) => <MovieShowPage {...routerProps} addToWatchList={this.addToWatchList}/>} />
+      <Route path='/movies/:id' render={(routerProps) => <MovieShowPage {...routerProps} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser}/>} />
 
->>>>>>> movie-show-page
     </Switch> 
 
    

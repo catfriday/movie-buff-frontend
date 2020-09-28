@@ -45,7 +45,11 @@ render(){
      <div onClick={this.handleClick}>
         <h1>{title}</h1> 
            <img src= {image} height="250px" width="200px"></img>
-           <button onClick={() => this.props.addToWatchList(this.props.movie)}>Add to Watchlist</button>
+           {this.props.movie.user_id === this.props.currentUser.id ? 
+         <p>Your Recomendation</p>
+        :
+        <button onClick={() => this.props.addToWatchList(this.props.movie)}>Add to Watchlist</button>}
+           
         {/* <Link
             to = {{
                 pathname:`/movies/${this.props.movie.id}`,
