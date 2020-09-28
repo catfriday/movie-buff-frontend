@@ -4,6 +4,8 @@ import './App.css';
 import MoviePage from './MoviePage'
 import SignUp from './SignUp'
 import LogIn from './LogIn'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
+
 
 
 const moviesUrl = 'http://localhost:3000/movies/' 
@@ -68,13 +70,13 @@ createUser = (e) =>{
 
   toggleLoginForm = () => {
     this.setState({
-      loginForm: !this.state.loginForm
+      loginForm: true
     })
   }
 
   toggleSignUpForm = () => {
     this.setState({
-      signUpForm: !this.state.signUpForm
+      signUpForm: true
     })
   }
 
@@ -106,27 +108,43 @@ addToWatchList = (movie) => {
 
 render(){
   return (
+    <BrowserRouter>
+  
+
     <div className="App">
      {/* <Header /> */}
      
+      {/* {this.state.ifClicked ? null:
       <div onClick={this.ifClicked}>
         <button onClick={this.toggleLoginForm}>Log In </button>
+        <button onClick={this.toggleSignUpForm}>Sign Up</button>
+     </div>  } 
         
+       <div>
         {this.state.loginForm
         ? <LogIn logIn={this.logInUser} />
         : null}
         
-        <button onClick={this.toggleSignUpForm}>Sign Up</button>
+      </div>  
+        
+      <div>
         {this.state.signUpForm
         ? <SignUp createUser={this.createUser}/>
         :null}
-      </div>
+      </div>  */}
+
+      {/* </div> */}
+       <Switch>
+      <Route path='/signup' render={(routerProps) => <SignUp {...routerProps} createUser={this.createUser}/>} />
+      <Route path='/login' render={(routerProps) => <LogIn {...routerProps} logIn={this.logInUser} />} />
+      <Route exact path='/movies' render={(routerProps) => <MoviePage {...routerProps} movies={this.state.movies} addToWatchList={this.addToWatchList}/>} />
      
-     
-     <MoviePage movies={this.state.movies} addToWatchList={this.addToWatchList}/>
+    </Switch> 
+    
      
 
     </div>
+    </BrowserRouter>
   );
 }
 

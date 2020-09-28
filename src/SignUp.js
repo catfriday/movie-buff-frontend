@@ -1,11 +1,19 @@
 import React from 'react'
+import { Link }  from 'react-router-dom'
 
 const SignUp = (props) => {
+   const handleSubmit = () => {
+
+        props.history.push("/movies") 
+    }
 
     return(
         <div>
             <h3>Sign Up Here</h3>
-            <form onSubmit={(e)=> props.createUser(e)}>
+            <form onSubmit={(e)=> {
+                props.createUser(e)
+                handleSubmit() } 
+                }>
                 <label>Username:</label> 
                 <input type='text' name='username'/><br/>
                 <label>Password:</label>
