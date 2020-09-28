@@ -6,6 +6,7 @@ import SignUp from './SignUp'
 import LogIn from './LogIn'
 import MovieForm from './MovieForm'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import MovieShowPage from './MovieShowPage';
 
 
 
@@ -59,6 +60,8 @@ createUser = (e) =>{
     })
 )
   }
+
+
 
   logInUser = (e) => {
     e.preventDefault()
@@ -184,7 +187,12 @@ render(){
       <Route path='/signup' render={(routerProps) => <SignUp {...routerProps} createUser={this.createUser}/>} />
       <Route path='/login' render={(routerProps) => <LogIn {...routerProps} logIn={this.logInUser} />} />
       <Route exact path='/movies' render={(routerProps) => <MoviePage {...routerProps} movies={this.state.movies} addToWatchList={this.addToWatchList}/>} />
+<<<<<<< HEAD
       <Route path ="/movies/new" render={(routerProps) => <MovieForm {...routerProps} addMovie={this.addMovie}/>} />
+=======
+      <Route path='/movies/:id' render={(routerProps) => <MovieShowPage {...routerProps} addToWatchList={this.addToWatchList}/>} />
+
+>>>>>>> movie-show-page
     </Switch> 
 
    
