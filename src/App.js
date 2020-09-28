@@ -8,6 +8,7 @@ import MovieForm from './MovieForm'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import MovieShowPage from './MovieShowPage';
 import SideBar from './SideBar'
+import WatchList from './WatchList'
 
 
 
@@ -147,44 +148,21 @@ render(){
   return (
     <BrowserRouter>
   
+     <SideBar currentUser={this.state.loggedUser} />
 
     <div className="App">
      {/* <Header /> */}
-     <SideBar />
-     
-      {/* {this.state.ifClicked ? null:
-      <div onClick={this.ifClicked}>
-        <button onClick={this.toggleLoginForm}>Log In </button>
-        <button onClick={this.toggleSignUpForm}>Sign Up</button>
-     </div>  } 
-        
-       <div>
-        {this.state.loginForm
-        ? <LogIn logIn={this.logInUser} />
-        : null}
-        
-      </div>  
-        
-      <div>
-        {this.state.signUpForm
-        ? <SignUp createUser={this.createUser} ifClicked={this.ifClicked}/>
-        :null}
-      </div>  */}
-
-      {/* </div> */}
+     {/* <WatchList currentUser={this.state.loggedUser} /> */}
        <Switch>
       <Route path='/signup' render={(routerProps) => <SignUp {...routerProps} createUser={this.createUser}/>} />
       <Route path='/login' render={(routerProps) => <LogIn {...routerProps} logIn={this.logInUser} />} />
       <Route exact path='/movies' render={(routerProps) => <MoviePage {...routerProps} movies={this.state.movies} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser} />} />
       <Route path ="/movies/new" render={(routerProps) => <MovieForm {...routerProps} addMovie={this.addMovie}/>} />
+      <Route path='/movies/watchlist' render={(routerProps) => <WatchList {...routerProps} />} />
       <Route path='/movies/:id' render={(routerProps) => <MovieShowPage {...routerProps} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser}/>} />
 
     </Switch> 
-
-   
-    
-     
-
+  
     </div>
     </BrowserRouter>
   );
