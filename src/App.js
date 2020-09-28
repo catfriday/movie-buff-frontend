@@ -5,6 +5,7 @@ import MoviePage from './MoviePage'
 import SignUp from './SignUp'
 import LogIn from './LogIn'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import MovieShowPage from './MovieShowPage';
 
 
 
@@ -20,6 +21,7 @@ state = {
   loginForm: false,
   signUpForm: false,
   ifClicked: false
+  
 }
 
 componentDidMount(){
@@ -57,6 +59,8 @@ createUser = (e) =>{
     })
 )
   }
+
+
 
   logInUser = (e) => {
     e.preventDefault()
@@ -150,7 +154,8 @@ render(){
       <Route path='/signup' render={(routerProps) => <SignUp {...routerProps} createUser={this.createUser}/>} />
       <Route path='/login' render={(routerProps) => <LogIn {...routerProps} logIn={this.logInUser} />} />
       <Route exact path='/movies' render={(routerProps) => <MoviePage {...routerProps} movies={this.state.movies} addToWatchList={this.addToWatchList}/>} />
-     
+      <Route path='/movies/:id' render={(routerProps) => <MovieShowPage {...routerProps} addToWatchList={this.addToWatchList}/>} />
+
     </Switch> 
     
      
