@@ -72,16 +72,28 @@ createUser = (e) =>{
     })
   }
 
+  toggleLoginFormOff = () => {
+    this.setState({
+      loginForm: false
+    })
+  }
+
   toggleSignUpForm = () => {
     this.setState({
       signUpForm: !this.state.signUpForm
     })
   }
 
-  ifClicked = () => {
-    console.log("hey")
+  toggleSignUpFormOff = () => {
     this.setState({
-      ifClicked: true
+      signUpForm: false
+    })
+  }
+
+  ifClicked = () => {
+    // console.log("hey")
+    this.setState({
+      ifClicked: !this.state.ifClicked
     })
   }
 
@@ -108,19 +120,34 @@ render(){
   return (
     <div className="App">
      {/* <Header /> */}
-     
+     {this.state.loginForm? 
       <div onClick={this.ifClicked}>
-        <button onClick={this.toggleLoginForm}>Log In </button>
-        
+        {this.state.loginForm
+        ? <LogIn logIn={this.logInUser} />
+          : null}
+        </div>
+       
+       :<div onClick={this.ifClicked}>
         {this.state.loginForm
         ? <LogIn logIn={this.logInUser} />
         : null}
-        
-        <button onClick={this.toggleSignUpForm}>Sign Up</button>
+        <button onClick={() => {this.toggleLoginForm(); this.toggleSignUpFormOff();}}>Log In </button>
+        </div>}
+
+
+        {this.state.signUpForm ? 
+        <div>
         {this.state.signUpForm
-        ? <SignUp createUser={this.createUser}/>
+        ? <SignUp createUser={this.createUser} ifClicked={this.ifClicked}/>
         :null}
-      </div>
+      </div> :
+      <div>
+      {this.state.signUpForm
+      ? <SignUp createUser={this.createUser}/>
+      :null}
+      <button onClick={() => {this.toggleSignUpForm(); this.toggleLoginFormOff();}}>Sign Up</button>
+    </div>
+      }
      
      
      <MoviePage movies={this.state.movies} addToWatchList={this.addToWatchList}/>
