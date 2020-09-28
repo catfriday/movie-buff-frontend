@@ -11,79 +11,82 @@ class MovieCard extends React.Component  {
      hover: false
  }
 
-//   const handleClick = () =>{
-//       props.history.push({
-//           pathname:`/movies/${props.movie.id}`,
-//         movie: props.movie})
-//   }
+     handleClick = () =>{
+      this.props.history.push({
+          pathname:`/movies/${this.props.movie.id}`,
+        movie: this.props.movie})
+  }
 
-changeHover =() => {
-    this.setState({
-        hover: !this.state.hover
-    })
-}
+// changeHover =() => {
+//     this.setState({
+//         hover: !this.state.hover
+//     })
+// }
 
 render(){
 
     let  {title, genre, review, image, video_link, movie_info, likes, dislikes } = this.props.movie
 
     return(
-        <div>
-            {this.state.hover ? 
-        <video controls>
-            <source src={video_link} />
-        </video>
-        :
+        
 
-         <img src={image} onMouseOver={this.changeHover}/>
-        }
+        // <div>
+        //     {this.state.hover ? 
+        // <video controls>
+        //     <source src={video_link} />
+        // </video>
+        // :
+
+        //  <img src={image} onMouseOver={this.changeHover}/>
+        // }
 
 
 
-        {/* <div >
+     <div onClick={this.handleClick}>
         <h1>{title}</h1> 
            <img src= {image} height="250px" width="200px"></img>
-           <button onClick={() => props.addToWatchList(props.movie)}>Add to Watchlist</button>
-        <Link
+           <button onClick={() => this.props.addToWatchList(this.props.movie)}>Add to Watchlist</button>
+        {/* <Link
             to = {{
-                pathname:`/movies/${props.movie.id}`,
-                movie: props.movie
+                pathname:`/movies/${this.props.movie.id}`,
+                movie: this.props.movie
             }}>See Movie Details
-        </Link>
-        </div> */}
-           {/* <ReactPlayer
-            url={video_link} /> */}
+        </Link> */}
+        </div> 
+        
+        //    <ReactPlayer
+        //     url={video_link} /> 
 
-            {/* <iframe src={video_link}
+        //      <iframe src={video_link}
                 
-            </iframe> */}
+        //     </iframe> 
 
 
 
-            {/* <video
-                poster={image}
-                onMouseOver={event => event.target.play()}
-                onMouseOut={event => event.target.pause()}
-                src={video_link} >
-            </video> */}
+        //     {/* <video
+        //         poster={image}
+        //         onMouseOver={event => event.target.play()}
+        //         onMouseOut={event => event.target.pause()}
+        //         src={video_link} >
+        //     </video> */}
 
 
-            {/* <HoverVideoPlayer
-                videoSrc={video_link}
-                pausedOverlay={
-                    <img src={image} alt=""/>
-                }
-                loadingOverlay={
-                    <div className="loading-spinner-overlay" />
-                }
-            /> */}
+        //     {/* <HoverVideoPlayer
+        //         videoSrc={video_link}
+        //         pausedOverlay={
+        //             <img src={image} alt=""/>
+        //         }
+        //         loadingOverlay={
+        //             <div className="loading-spinner-overlay" />
+        //         }
+        //     /> */}
            
       
-           {/* <video>
-               <source src={video_link}>
+        //    {/* <video>
+        //        <source src={video_link}>
               
-           </video> */}
-        </div>
+        //    </video> */}
+        
     )
 }
 }
