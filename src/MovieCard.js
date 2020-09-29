@@ -42,8 +42,8 @@ render(){
 
 
 
-     <div onClick={this.handleClick}>
-        <h1>{title}</h1> 
+     <div onClick={this.handleClick} className='card'>
+        <h2>{title}</h2> 
            <img src= {image} height="250px" width="200px"></img>
            {this.props.movie.user_id === this.props.currentUser.id ? 
          <p>Your Recomendation</p>

@@ -91,17 +91,21 @@ createUser = (e) =>{
     .then(loggedUser => this.setState({
       loggedUser: loggedUser,
       userMovie: loggedUser.posted_movies,
-      watchlist: this.state.movies.filter(movie => movie.user_id != this.state.loggedUser.id)
+      watchlist: loggedUser.watchlist
   
     }))
+    
   }
 
   // watchlistMovie = () =>{
-  //  let list = this.state.movies.filter(movie => movie.user_id !== this.state.loggedUser.id)
+  //  if (this.state.loggedUser.movies){
 
-  //  this.setState({
-  //    watchlist: list
-  //  })
+  //    let list = this.state.loggedUser.movies.filter(movie => !this.state.loggedUser.posted_movies.includes(movie))
+  //    this.setState({
+  //      watchlist: list
+  //    })
+  //  }
+
   // }
 
 addToWatchList = (movie) => {
@@ -152,6 +156,14 @@ addMovie = (e) => {
   )
 }
 
+deleteWatchlistItem = (movie) => {
+  fetch(watchListUrl + movie.id, {
+    method: 'DELETE'
+  })
+  .then(console.log)
+  console.log(movie)
+}
+
 
 
 
@@ -169,7 +181,7 @@ render(){
       <Route path='/login' render={(routerProps) => <LogIn {...routerProps} logIn={this.logInUser} />} />
       <Route exact path='/movies' render={(routerProps) => <MoviePage {...routerProps} movies={this.state.movies} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser} />} />
       <Route path ="/movies/new" render={(routerProps) => <MovieForm {...routerProps} addMovie={this.addMovie}/>} />
-      <Route path='/movies/watchlist' render={(routerProps) => <WatchList {...routerProps} currentUser={this.state.loggedUser} watchlist={this.state.watchlist}/>} />
+      <Route path='/movies/watchlist' render={(routerProps) => <WatchList {...routerProps} currentUser={this.state.loggedUser} watchlist={this.state.watchlist} delete={this.deleteWatchlistItem}/>} />
       <Route path='/movies/:id' render={(routerProps) => <MovieShowPage {...routerProps} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser}/>} />
 
     </Switch> 
