@@ -9,6 +9,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import MovieShowPage from './MovieShowPage';
 import SideBar from './SideBar'
 import WatchList from './WatchList'
+import MyMovies from './MyMovies'
 
 
 
@@ -164,6 +165,19 @@ deleteWatchlistItem = (movie) => {
   console.log(movie)
 }
 
+deleteMyMovie = (movie) => {
+  // console.log(movie)
+  fetch(moviesUrl + movie.id, {
+    method: 'DELETE'
+  })
+  let myMovie = this.state.userMovie.filter(movieObj => movieObj !== movie)
+  this.setState({
+    userMovie: myMovie
+  })
+}
+
+
+
 
 
 
@@ -182,7 +196,8 @@ render(){
       <Route exact path='/movies' render={(routerProps) => <MoviePage {...routerProps} movies={this.state.movies} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser} />} />
       <Route path ="/movies/new" render={(routerProps) => <MovieForm {...routerProps} addMovie={this.addMovie}/>} />
       <Route path='/movies/watchlist' render={(routerProps) => <WatchList {...routerProps} currentUser={this.state.loggedUser} watchlist={this.state.watchlist} delete={this.deleteWatchlistItem}/>} />
-      <Route path='/movies/:id' render={(routerProps) => <MovieShowPage {...routerProps} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser}/>} />
+      <Route exact path='/movies/:id' render={(routerProps) => <MovieShowPage {...routerProps} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser}/>} />
+      <Route path='/my-movies' render={(routerProps) => <MyMovies {...routerProps} movies={this.state.userMovie} deleteMyMovie={this.deleteMyMovie}/>}/>
 
     </Switch> 
   
