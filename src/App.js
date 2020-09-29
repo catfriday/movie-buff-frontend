@@ -10,6 +10,7 @@ import MovieShowPage from './MovieShowPage';
 import SideBar from './SideBar'
 import WatchList from './WatchList'
 import MyMovies from './MyMovies'
+import MovieCard from './MovieCard';
 
 
 
@@ -27,7 +28,10 @@ state = {
   ifClicked: false,
   movieForm: false,
   userMovie: [],
-  watchlist:[]
+  watchlist:[],
+  titleFormState: '',
+  movie: {}
+ 
 }
 
 componentDidMount(){
@@ -158,12 +162,28 @@ addMovie = (e) => {
 }
 
 deleteWatchlistItem = (movie) => {
-  fetch(watchListUrl + movie.id, {
-    method: 'DELETE'
+  let user = this.state.loggedUser
+  let removeMovie = movie
+  fetch('http://localhost:3000/watchlist/delete', {
+    method: 'POST',
+    headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          user: user,
+          movie: removeMovie
+      
+        })
   })
-  .then(console.log)
-  console.log(movie)
-}
+
+   let newMovie = this.state.watchlist.filter(movieObj => movieObj !== removeMovie)
+      this.setState({
+        watchlist: newMovie
+      })
+    }
+  
+
 
 deleteMyMovie = (movie) => {
   // console.log(movie)
@@ -174,6 +194,41 @@ deleteMyMovie = (movie) => {
   this.setState({
     userMovie: myMovie
   })
+}
+
+updateMyMovie = (updatedMovie) => {
+  this.setState({
+    // titleFormState: 'Update Your Movie',
+    movie: updatedMovie
+  })
+  // fetch(moviesUrl + movie.id, {
+  //   method: 'PATCH',
+  //   headers:{
+  //     'Content-Type': 'application/json',
+  //     'Accept': 'application/json'
+  //   },
+  //   body: JSON.stringify
+  // })
+}
+
+handleChange = () => {
+
+}
+
+patchMovie = (e) => {
+let movie = this.state.movie 
+fetch(moviesUrl + movie.id, {
+    method: 'PATCH',
+    headers:{
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify(
+      movie
+    )
+  })
+  .then(res => res.json())
+  .then(console.log)
 }
 
 
@@ -194,10 +249,10 @@ render(){
       <Route path='/signup' render={(routerProps) => <SignUp {...routerProps} createUser={this.createUser}/>} />
       <Route path='/login' render={(routerProps) => <LogIn {...routerProps} logIn={this.logInUser} />} />
       <Route exact path='/movies' render={(routerProps) => <MoviePage {...routerProps} movies={this.state.movies} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser} />} />
-      <Route path ="/movies/new" render={(routerProps) => <MovieForm {...routerProps} addMovie={this.addMovie}/>} />
+      <Route path ="/movies/new" render={(routerProps) => <MovieForm {...routerProps} addMovie={this.addMovie} title={this.state.titleFormState} movie={this.state.movie} updateMyMovie={this.updateMyMovie}/>} />
       <Route path='/movies/watchlist' render={(routerProps) => <WatchList {...routerProps} currentUser={this.state.loggedUser} watchlist={this.state.watchlist} delete={this.deleteWatchlistItem}/>} />
       <Route exact path='/movies/:id' render={(routerProps) => <MovieShowPage {...routerProps} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser}/>} />
-      <Route path='/my-movies' render={(routerProps) => <MyMovies {...routerProps} movies={this.state.userMovie} deleteMyMovie={this.deleteMyMovie}/>}/>
+      <Route path='/my-movies' render={(routerProps) => <MyMovies {...routerProps} movies={this.state.userMovie} deleteMyMovie={this.deleteMyMovie} updateMyMovie={this.updateMyMovie}/>}/>
 
     </Switch> 
   
