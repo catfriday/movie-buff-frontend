@@ -24,7 +24,9 @@ state = {
   loginForm: false,
   signUpForm: false,
   ifClicked: false,
-  movieForm: false
+  movieForm: false,
+  userMovie: [],
+  watchlist:[]
 }
 
 componentDidMount(){
@@ -87,10 +89,20 @@ createUser = (e) =>{
     fetch(loginUsersUrl + e.target.username.value)
     .then(res => res.json())
     .then(loggedUser => this.setState({
-      loggedUser: loggedUser
+      loggedUser: loggedUser,
+      userMovie: loggedUser.posted_movies,
+      watchlist: this.state.movies.filter(movie => movie.user_id != this.state.loggedUser.id)
+  
     }))
   }
 
+  // watchlistMovie = () =>{
+  //  let list = this.state.movies.filter(movie => movie.user_id !== this.state.loggedUser.id)
+
+  //  this.setState({
+  //    watchlist: list
+  //  })
+  // }
 
 addToWatchList = (movie) => {
 
@@ -143,12 +155,11 @@ addMovie = (e) => {
 
 
 
-
 render(){
   return (
     <BrowserRouter>
   
-     <SideBar currentUser={this.state.loggedUser} />
+     <SideBar currentUser={this.state.loggedUser} userMovie={this.state.userMovie} watchlistButton={this.watchlistMovie} />
 
     <div className="App">
      {/* <Header /> */}
@@ -158,7 +169,7 @@ render(){
       <Route path='/login' render={(routerProps) => <LogIn {...routerProps} logIn={this.logInUser} />} />
       <Route exact path='/movies' render={(routerProps) => <MoviePage {...routerProps} movies={this.state.movies} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser} />} />
       <Route path ="/movies/new" render={(routerProps) => <MovieForm {...routerProps} addMovie={this.addMovie}/>} />
-      <Route path='/movies/watchlist' render={(routerProps) => <WatchList {...routerProps} />} />
+      <Route path='/movies/watchlist' render={(routerProps) => <WatchList {...routerProps} currentUser={this.state.loggedUser} watchlist={this.state.watchlist}/>} />
       <Route path='/movies/:id' render={(routerProps) => <MovieShowPage {...routerProps} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser}/>} />
 
     </Switch> 
