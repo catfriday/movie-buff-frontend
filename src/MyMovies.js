@@ -5,7 +5,7 @@ const MyMovies = (props) => {
 
     const handleClick = () =>{
             props.history.push({
-                pathname:`/movies/new`
+                pathname:`/edit-my-movie`
                })
         }
     return(

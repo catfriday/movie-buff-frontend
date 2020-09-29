@@ -27,36 +27,44 @@ render(){
 
     let  {title, genre, review, image, video_link, movie_info, likes, dislikes } = this.props.movie
 
+
+
+
+    
     return(
-        
-
-        // <div>
-        //     {this.state.hover ? 
-        // <video controls>
-        //     <source src={video_link} />
-        // </video>
-        // :
-
-        //  <img src={image} onMouseOver={this.changeHover}/>
-        // }
-
-
-
      <div onClick={this.handleClick} className='card'>
         <h2>{title}</h2> 
            <img src= {image} height="250px" width="200px"></img>
-           {this.props.movie.user_id === this.props.currentUser.id ? 
-         <p>Your Recomendation</p>
-        :
-        <button onClick={() => this.props.addToWatchList(this.props.movie)}>Add to Watchlist</button>}
-           
-        {/* <Link
-            to = {{
-                pathname:`/movies/${this.props.movie.id}`,
-                movie: this.props.movie
-            }}>See Movie Details
-        </Link> */}
-        </div> 
+           <div className="myDIV">
+                <div className="hide">
+
+                        <div class="likes-section">
+                                <span className="likes">0 likes</span>
+                                <button className="like-button">♥</button>
+                        </div>
+                        {this.props.movie.user_id === this.props.currentUser.id ? 
+                        <p>Your Recomendation</p>
+                        :
+                        <button onClick={() => this.props.addToWatchList(this.props.movie)}>Add to Watchlist</button>}
+                
+                 </div>   
+            </div>
+    </div> 
+                
+    )
+}
+}
+
+export default MovieCard
+
+
+
+   {/* <Link
+                    to = {{
+                        pathname:`/movies/${this.props.movie.id}`,
+                        movie: this.props.movie
+                    }}>See Movie Details
+                </Link> */}
         
         //    <ReactPlayer
         //     url={video_link} /> 
@@ -91,12 +99,13 @@ render(){
               
         //    </video> */}
         
-    )
-}
-}
 
-export default MovieCard
+        // <div>
+        //     {this.state.hover ? 
+        // <video controls>
+        //     <source src={video_link} />
+        // </video>
+        // :
 
-
-
-   
+        //  <img src={image} onMouseOver={this.changeHover}/>
+        // }

@@ -11,6 +11,7 @@ import SideBar from './SideBar'
 import WatchList from './WatchList'
 import MyMovies from './MyMovies'
 import MovieCard from './MovieCard';
+import EditForm from './EditForm';
 
 
 
@@ -211,8 +212,15 @@ updateMyMovie = (updatedMovie) => {
   // })
 }
 
-handleChange = () => {
+handleChange = (e) => {
+  console.log(e.target.name)
+  console.log(e.target.value)
+  let name = e.target.name
+    let value = e.target.value
 
+    this.setState({
+      movie: {...this.state.movie, [name]:value}
+    })
 }
 
 patchMovie = (e) => {
@@ -253,7 +261,7 @@ render(){
       <Route path='/movies/watchlist' render={(routerProps) => <WatchList {...routerProps} currentUser={this.state.loggedUser} watchlist={this.state.watchlist} delete={this.deleteWatchlistItem}/>} />
       <Route exact path='/movies/:id' render={(routerProps) => <MovieShowPage {...routerProps} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser}/>} />
       <Route path='/my-movies' render={(routerProps) => <MyMovies {...routerProps} movies={this.state.userMovie} deleteMyMovie={this.deleteMyMovie} updateMyMovie={this.updateMyMovie}/>}/>
-
+      <Route path='/edit-my-movie' render={(routerProps) => <EditForm {...routerProps} handleChange={this.handleChange} movie={this.state.movie}/>} />
     </Switch> 
   
     </div>

@@ -9,11 +9,25 @@
   /* box-shadow: 3px 4px #e04b52 */
 }
 
-.card:hover{
+/* .card:hover{
 border: grey solid 1px; 
 box-shadow: 3px 4px black
 
+} */
+/* .hide {
+  display: none;
+} */
+
+/* .myDIV  {
+  display: none;
+  
 }
+.myDIV:hover{
+  display:block;
+  border: grey solid 1px; 
+box-shadow: 3px 4px black
+} */
+
 
 
 
