@@ -37,15 +37,15 @@ render(){
     
     return(
      <div  className='card'>
-        <h3>{title}</h3> 
+        <h3 className='movie-title'>{title}</h3> 
             <div className='image'>
             <img onClick={this.handleClick} src= {image} height="270px" width="200px"></img>
             </div>
            
                     <div class="likes-section">
-                            <span >{`${this.props.movie.likes} Likes`}</span> 
+                            <span className='likes-name'>{`${this.props.movie.likes} Likes`}</span> 
                             <span className="likes introwrapper" onClick={() => this.props.likes(this.props.movie)} >&#127871;</span><br></br>
-                            <span >{`${this.props.movie.dislikes} Dislikes`}</span>
+                            <span className='likes-name'>{`${this.props.movie.dislikes} Dislikes`}</span>
                             <span className="likes introwrapper" onClick={() => this.props.dislikes(this.props.movie)}   >&#128530;</span>
                     </div>
 
@@ -53,7 +53,7 @@ render(){
                             {this.props.movie.user_id === this.props.currentUser.id ? 
                             <p>Your Recomendation</p>
                             :
-                            <button onClick={() => this.props.addToWatchList(this.props.movie)}>Add to Watchlist</button>}
+                            <p className='watchlist' onClick={() => this.props.addToWatchList(this.props.movie)}>Add to Watchlist</p>}
                         </div>
                 
      </div>   

@@ -15,10 +15,10 @@ const LogIn = (props) => {
                 props.logIn(e)
                 handleSubmit()}}>
                     
-                <label>Username:</label> 
-                <input type='text' name='username'/><br/>
-                <label>Password:</label>
-                <input type='text' name='password'/><br/>
+                <label></label> 
+                <input type='text' name='username'placeholder='Username'/><br></br><br></br>
+                <label></label>
+                <input type='text' type="password" className="pwd" name='password'placeholder='Password'/><br></br><br></br>
                 <input type="submit" value="Submit"/>
             </form>
         </div>
