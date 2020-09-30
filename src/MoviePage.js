@@ -15,9 +15,8 @@ const MoviePage = (props) => {
 
             </div>
             <Link to="/movies/new"> Add New Movie </Link><br></br>
-            <Link to="/login"> Login </Link><br></br>
-            <Link to="/signup"> Sign Up! </Link>
-            {props.movies.map(movie => <MovieCard key={movie.id} movie={movie} addToWatchList={props.addToWatchList} history={props.history} currentUser={props.currentUser}/>)}
+            
+            {props.movies.map(movie => <MovieCard key={movie.id} movie={movie} addToWatchList={props.addToWatchList} history={props.history} currentUser={props.currentUser} likes={props.likes} dislikes={props.dislikes}/>)}
         
         </div>
     )

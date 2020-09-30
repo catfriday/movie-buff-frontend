@@ -12,6 +12,8 @@ import WatchList from './WatchList'
 import MyMovies from './MyMovies'
 import MovieCard from './MovieCard';
 import EditForm from './EditForm';
+import Header from './Header'
+import HomePage from './HomePage';
 
 
 
@@ -221,24 +223,67 @@ handleChange = (e) => {
     this.setState({
       movie: {...this.state.movie, [name]:value}
     })
+console.log(this.state.movie)
+
 }
 
-patchMovie = (e) => {
-let movie = this.state.movie 
-fetch(moviesUrl + movie.id, {
+patchMovie = () => {
+  // title: this.state.movie.title,
+  //   genre:this.state.movie.genre,
+  //   review: this.state.movie.review,
+  //   image: this.state.movie.image,
+  //   video_link: this.state.movie.video_link,
+  //   movie_info: this.state.movie.movie_info, 
+  
+// let movie = this.state.movie 
+// console.log(movie)
+
+let review =  this.state.movie.review
+
+fetch(moviesUrl + this.state.id, {
     method: 'PATCH',
     headers:{
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     },
-    body: JSON.stringify(
-      movie
-    )
+    body: JSON.stringify({
+     review
+    })
   })
   .then(res => res.json())
   .then(console.log)
 }
 
+
+ increaseLikes = (movie) =>{
+   fetch(moviesUrl + movie.id, {
+     method: 'PATCH', 
+     headers:{
+      'Content-Type': 'application/json',
+      Accept: 'application/json'
+     },
+     body: JSON.stringify({
+       likes: movie.likes + 1
+     })
+   })
+   .then(resp => resp.json())
+   .then (likes => console.log(likes))
+ }
+
+ disLikes = (movie) =>{
+  fetch(moviesUrl + movie.id, {
+    method: 'PATCH', 
+    headers:{
+     'Content-Type': 'application/json',
+     Accept: 'application/json'
+    },
+    body: JSON.stringify({
+      dislikes: movie.dislikes + 1
+    })
+  })
+  .then(resp => resp.json())
+  .then (dislikes => console.log(dislikes))
+}
 
 
 
@@ -247,21 +292,22 @@ fetch(moviesUrl + movie.id, {
 render(){
   return (
     <BrowserRouter>
+    <Header /> 
   
      <SideBar currentUser={this.state.loggedUser} userMovie={this.state.userMovie} watchlistButton={this.watchlistMovie} />
 
     <div className="App">
-     {/* <Header /> */}
      {/* <WatchList currentUser={this.state.loggedUser} /> */}
        <Switch>
+      <Route path='/home' render={(routerProps) => <HomePage {...routerProps} />} />
       <Route path='/signup' render={(routerProps) => <SignUp {...routerProps} createUser={this.createUser}/>} />
       <Route path='/login' render={(routerProps) => <LogIn {...routerProps} logIn={this.logInUser} />} />
-      <Route exact path='/movies' render={(routerProps) => <MoviePage {...routerProps} movies={this.state.movies} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser} />} />
+      <Route exact path='/movies' render={(routerProps) => <MoviePage {...routerProps} likes={this.increaseLikes} dislikes={this.disLikes} movies={this.state.movies} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser} />} />
       <Route path ="/movies/new" render={(routerProps) => <MovieForm {...routerProps} addMovie={this.addMovie} title={this.state.titleFormState} movie={this.state.movie} updateMyMovie={this.updateMyMovie}/>} />
       <Route path='/movies/watchlist' render={(routerProps) => <WatchList {...routerProps} currentUser={this.state.loggedUser} watchlist={this.state.watchlist} delete={this.deleteWatchlistItem}/>} />
       <Route exact path='/movies/:id' render={(routerProps) => <MovieShowPage {...routerProps} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser}/>} />
       <Route path='/my-movies' render={(routerProps) => <MyMovies {...routerProps} movies={this.state.userMovie} deleteMyMovie={this.deleteMyMovie} updateMyMovie={this.updateMyMovie}/>}/>
-      <Route path='/edit-my-movie' render={(routerProps) => <EditForm {...routerProps} handleChange={this.handleChange} movie={this.state.movie}/>} />
+      <Route path='/edit-my-movie' render={(routerProps) => <EditForm {...routerProps} handleChange={this.handleChange} movie={this.state.movie} patch={this.patchMovie}/>} />
     </Switch> 
   
     </div>

@@ -28,6 +28,17 @@ box-shadow: 3px 4px black
 box-shadow: 3px 4px black
 } */
 
+#horoscope-header {
+  display: flex;
+  justify-content: center;
+  background:black;
+  border: white solid 1px;
+  opacity: .9;
+  height: 16rem;
+  box-shadow: 15px 10px 5px white;
+  /* border-radius: 15px; */
+  /* padding: 3rem; */
+}
 
 
 

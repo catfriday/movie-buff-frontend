@@ -17,6 +17,10 @@ class MovieCard extends React.Component  {
         movie: this.props.movie})
   }
 
+   click = () =>{
+    console.log('hey')
+}
+
 // changeHover =() => {
 //     this.setState({
 //         hover: !this.state.hover
@@ -32,15 +36,17 @@ render(){
 
     
     return(
-     <div onClick={this.handleClick} className='card'>
+     <div  className='card'>
         <h2>{title}</h2> 
-           <img src= {image} height="250px" width="200px"></img>
+           <img onClick={this.handleClick} src= {image} height="250px" width="200px"></img>
            <div className="myDIV">
                 <div className="hide">
 
                         <div class="likes-section">
-                                <span className="likes">0 likes</span>
-                                <button className="like-button">♥</button>
+                                <span className="likes">{`${this.props.movie.likes} Likes`}</span><br/>
+                                <span onClick={() => this.props.likes(this.props.movie)} className="like-button">&#127871;</span><br></br>
+                                <span className="likes">{`${this.props.movie.dislikes} Dislikes`}</span>
+                                <span onClick={() => this.props.dislikes(this.props.movie)}  className="like-button" >&#128530;</span>
                         </div>
                         {this.props.movie.user_id === this.props.currentUser.id ? 
                         <p>Your Recomendation</p>
