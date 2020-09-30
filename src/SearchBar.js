@@ -2,15 +2,15 @@ import React from 'react';
 
 const SearchBar = (props) => {
   return (
-      <div>
+      <div className='search-bar'>
           <strong>Sort by:</strong>
       <label>
         <input type="radio" value="Alphabetically" checked={props.sort === 'Alphabetically'} onChange={(e) => props.handleSort(e.target.value)}/>
-        Alphabetically
+            Alphabetically
       </label>
       <label>
         <input type="radio" value="Likes" checked={props.sort === 'Likes'} onChange={(e) => props.handleSort(e.target.value)}/>
-       Most Liked
+            Most Liked
       </label>
       <br></br>
       <label>

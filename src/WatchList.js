@@ -7,10 +7,23 @@ const WatchList = (props) => {
     return (
         <div>
             {props.watchlist.map(movie =>
-            <div>
-              <p>{movie.title}</p>
-              <button onClick={() => props.delete(movie)}>Delete From Watchlist</button>
-           </div>
+            <div  className='card'>
+                <h3 className='movie-title'>{movie.title}</h3> 
+                    <div className='image'>
+                        <img  src= {movie.image} height="270px" width="200px"></img>
+                    </div>
+                    <div class="likes-section">
+                        <span className='likes-name'>{`${movie.likes} Likes`}</span> 
+                        <span className="likes introwrapper"  >&#127871;</span><br></br>
+                        <span className='likes-name'>{`${movie.dislikes} Dislikes`}</span>
+                        <span className="likes introwrapper" >&#128530;</span>
+                     </div>
+
+                    <div>
+                        <p className='watchlist' onClick={() => props.delete(movie)}>Delete From Watchlist</p>
+                    </div>
+                
+        </div>    
                 )} 
         </div>
     )
@@ -18,3 +31,21 @@ const WatchList = (props) => {
 
 export default WatchList
 
+{/* <div  className='card'>
+        <h3 className='movie-title'>{movie.title}</h3> 
+            <div className='image'>
+            <img  src= {movie.image} height="270px" width="200px"></img>
+            </div>
+           
+                    <div class="likes-section">
+                            <span className='likes-name'>{`${movie.likes} Likes`}</span> 
+                            <span className="likes introwrapper"  >&#127871;</span><br></br>
+                            <span className='likes-name'>{`${movie.dislikes} Dislikes`}</span>
+                            <span className="likes introwrapper" >&#128530;</span>
+                    </div>
+
+                        <div>
+                             <button onClick={() => props.delete(movie)}>Delete From Watchlist</button>
+                        </div>
+                
+     </div>    */}

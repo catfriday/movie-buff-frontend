@@ -38,7 +38,8 @@ state = {
   titleFormState: '',
   movie: {},
   sort: "",
-  filterType: "All"
+  filterType: "All",
+  currentUser: false
  
 }
 
@@ -87,12 +88,17 @@ createUser = (e) =>{
     // console.log(e.target.username.value)
     fetch(loginUsersUrl + e.target.username.value)
     .then(res => res.json())
-    .then(loggedUser => this.setState({
+    .then(loggedUser => {
+      console.log(loggedUser)
+      this.setState({
       loggedUser: loggedUser,
       userMovie: loggedUser.posted_movies,
-      watchlist: loggedUser.watchlist
+      watchlist: loggedUser.watchlist,
+      currentUser: true
   
-    }))
+    })
+    }
+      )
     
   }
 
@@ -301,12 +307,21 @@ render(){
   return (
     <BrowserRouter>
     <Header /> 
-  
-     <SideBar currentUser={this.state.loggedUser} userMovie={this.state.userMovie} watchlistButton={this.watchlistMovie} />
-     <SearchBar handleSort={this.handleSort} sort={this.state.sort} handleFilter={this.handleFilter}  />
+  {
+    this.state.currentUser ? 
+    <div>
+      <SearchBar handleSort={this.handleSort} sort={this.state.sort} handleFilter={this.handleFilter}  />
+      <SideBar currentUser={this.state.loggedUser} userMovie={this.state.userMovie} watchlistButton={this.watchlistMovie} />
+
+    </div>
+    : null 
+
+  }
 
     <div className="App">
        <Switch>
+  
+
       <Route path='/home' render={(routerProps) => <HomePage {...routerProps} />} />
       <Route path='/signup' render={(routerProps) => <SignUp {...routerProps} createUser={this.createUser}/>} />
       <Route path='/login' render={(routerProps) => <LogIn {...routerProps} logIn={this.logInUser} />} />

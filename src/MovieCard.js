@@ -46,7 +46,7 @@ render(){
                             <span className='likes-name'>{`${this.props.movie.likes} Likes`}</span> 
                             <span className="likes introwrapper" onClick={() => this.props.likes(this.props.movie.id, this.props.movie.likes)} >&#127871;</span><br></br>
                             <span className='likes-name'>{`${this.props.movie.dislikes} Dislikes`}</span>
-                            <span className="likes introwrapper" onClick={() => this.props.dislikes(this.props.id, this.props.movie.disliks)}   >&#128530;</span>
+                            <span className="likes introwrapper" onClick={() => this.props.dislikes(this.props.movie.id, this.props.movie.disliks)}   >&#128530;</span>
                     </div>
 
                         <div>

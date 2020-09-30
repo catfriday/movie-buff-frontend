@@ -12,19 +12,30 @@ const MyMovies = (props) => {
         <div>
             {props.movies.map( movie => 
             
-                <div>
-                <p>{movie.title}</p>
-                    <button onClick= {
-                        () => {props.updateMyMovie(movie)
-                    handleClick()
-                    }
-                    }>Update Movie</button>
-
-                    <button onClick={
-                        () => props.deleteMyMovie(movie)
-                        }>Delete Movie</button>
+            <div  className='card'>
+                     <h3 className='movie-title'>{movie.title}</h3> 
+                <div className='image'>
+                        <img  src= {movie.image} height="270px" width="200px"></img>
                 </div>
-            
+
+                <div class="likes-section">
+                    <span className='likes-name'>{`${movie.likes} Likes`}</span> 
+                    <span className="likes introwrapper"  >&#127871;</span><br></br>
+                    <span className='likes-name'>{`${movie.dislikes} Dislikes`}</span>
+                    <span className="likes introwrapper" >&#128530;</span>
+                 </div>
+
+                    <div>
+                        <p className='watchlist' onClick= {
+                            () => {props.updateMyMovie(movie)
+                             handleClick()
+                                }}>Update Movie</p>
+
+                        <p className='watchlist' onClick={
+                            () => props.deleteMyMovie(movie)
+                                }>Delete Movie</p>
+                    </div>
+                </div>
 
                 )}
         
@@ -35,3 +46,26 @@ const MyMovies = (props) => {
 }
 
 export default MyMovies
+
+{/* <div  className='card'>
+                <h3 className='movie-title'>{movie.title}</h3> 
+                    <div className='image'>
+                        <img  src= {movie.image} height="270px" width="200px"></img>
+                    </div>
+                    <div class="likes-section">
+                        <span className='likes-name'>{`${movie.likes} Likes`}</span> 
+                        <span className="likes introwrapper"  >&#127871;</span><br></br>
+                        <span className='likes-name'>{`${movie.dislikes} Dislikes`}</span>
+                        <span className="likes introwrapper" >&#128530;</span>
+                     </div>
+
+                    <div>
+                        <p onClick= {
+                            () => {props.updateMyMovie(movie)
+                             handleClick()
+                                }}>Update Movie</p>
+
+                    <p onClick={
+                            () => props.deleteMyMovie(movie)
+                                }>Delete Movie</p>
+                    </div> */}
