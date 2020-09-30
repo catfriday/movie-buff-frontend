@@ -14,6 +14,8 @@ import MovieCard from './MovieCard';
 import EditForm from './EditForm';
 import Header from './Header'
 import HomePage from './HomePage';
+import SearchBar from './SearchBar'
+
 
 
 
@@ -25,6 +27,7 @@ const watchListUrl = 'http://localhost:3000/watchlists/'
 class App extends Component  {
 state = {
   movies: [],
+  filteredMovies: [],
   loggedUser: {},
   loginForm: false,
   signUpForm: false,
@@ -33,7 +36,10 @@ state = {
   userMovie: [],
   watchlist:[],
   titleFormState: '',
-  movie: {}
+  movie: {},
+  sort: "",
+  filterType: "All"
+
  
 }
 
@@ -41,24 +47,10 @@ componentDidMount(){
   fetch(moviesUrl)
   .then(resp => resp.json())
   .then(movies => this.setState({
-    movies:  movies.map(movie => {return {...movie, userMovie:false}})
+    movies:  movies.map(movie => {return {...movie, userMovie:false}}),
+    filteredMovies:  movies.map(movie => {return {...movie, userMovie:false}}) 
   }))
 }
-
-// userMovies = () => {
-
-//   let newMovies = this.state.movies.map(movie => {
-//     if (movie.user_id === this.state.loggedUser.id){
-//       return {...movie, userMovie: true}
-
-//     }
-//     return movie
-//   })
-//  this.setState({
-//    movies: newMovies
-//  })
-
-// }
 
 
 createUser = (e) =>{
@@ -104,17 +96,6 @@ createUser = (e) =>{
     }))
     
   }
-
-  // watchlistMovie = () =>{
-  //  if (this.state.loggedUser.movies){
-
-  //    let list = this.state.loggedUser.movies.filter(movie => !this.state.loggedUser.posted_movies.includes(movie))
-  //    this.setState({
-  //      watchlist: list
-  //    })
-  //  }
-
-  // }
 
 addToWatchList = (movie) => {
 
@@ -201,17 +182,8 @@ deleteMyMovie = (movie) => {
 
 updateMyMovie = (updatedMovie) => {
   this.setState({
-    // titleFormState: 'Update Your Movie',
     movie: updatedMovie
   })
-  // fetch(moviesUrl + movie.id, {
-  //   method: 'PATCH',
-  //   headers:{
-  //     'Content-Type': 'application/json',
-  //     'Accept': 'application/json'
-  //   },
-  //   body: JSON.stringify
-  // })
 }
 
 handleChange = (e) => {
@@ -228,19 +200,8 @@ console.log(this.state.movie)
 }
 
 patchMovie = () => {
-  // title: this.state.movie.title,
-  //   genre:this.state.movie.genre,
-  //   review: this.state.movie.review,
-  //   image: this.state.movie.image,
-  //   video_link: this.state.movie.video_link,
-  //   movie_info: this.state.movie.movie_info, 
-  
-// let movie = this.state.movie 
-// console.log(movie)
-
 let review =  this.state.movie.review
-
-fetch(moviesUrl + this.state.id, {
+fetch(moviesUrl + this.state.movie.id, {
     method: 'PATCH',
     headers:{
       'Content-Type': 'application/json',
@@ -248,6 +209,7 @@ fetch(moviesUrl + this.state.id, {
     },
     body: JSON.stringify({
      review
+   
     })
   })
   .then(res => res.json())
@@ -285,24 +247,56 @@ fetch(moviesUrl + this.state.id, {
   .then (dislikes => console.log(dislikes))
 }
 
+handleSort = (value) => {
+  //console.log(value)
+  if(value === 'Alphabetically'){
+    this.setState({
+      movies: this.state.movies.sort((a,b) => a.title > b.title? 1: -1),
+      sort: "Alphabetically"
+    })
+  } else {
+    this.setState({
+      movies: this.state.movies.sort((a,b) => a.likes > b.likes? 1: -1),
+      sort: 'Likes'
+    })
 
+  }
+  
+}
 
+handleFilter = (value) => {
+  if(value !== 'All'){
+    this.setState({
+      filterType: value,
+      filteredMovies: this.state.movies.filter(movie => movie.genre === value)
+    })
+  }
+  else{
+    this.setState({
+      filterType: 'All',
+      filteredMovies: this.state.movies
+    })
+  }
+
+}
 
 
 render(){
+
+ 
   return (
     <BrowserRouter>
     <Header /> 
   
      <SideBar currentUser={this.state.loggedUser} userMovie={this.state.userMovie} watchlistButton={this.watchlistMovie} />
+     <SearchBar handleSort={this.handleSort} sort={this.state.sort} handleFilter={this.handleFilter}  />
 
     <div className="App">
-     {/* <WatchList currentUser={this.state.loggedUser} /> */}
        <Switch>
       <Route path='/home' render={(routerProps) => <HomePage {...routerProps} />} />
       <Route path='/signup' render={(routerProps) => <SignUp {...routerProps} createUser={this.createUser}/>} />
       <Route path='/login' render={(routerProps) => <LogIn {...routerProps} logIn={this.logInUser} />} />
-      <Route exact path='/movies' render={(routerProps) => <MoviePage {...routerProps} likes={this.increaseLikes} dislikes={this.disLikes} movies={this.state.movies} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser} />} />
+      <Route exact path='/movies' render={(routerProps) => <MoviePage {...routerProps} likes={this.increaseLikes} dislikes={this.disLikes} movies={this.state.filteredMovies} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser} />} />
       <Route path ="/movies/new" render={(routerProps) => <MovieForm {...routerProps} addMovie={this.addMovie} title={this.state.titleFormState} movie={this.state.movie} updateMyMovie={this.updateMyMovie}/>} />
       <Route path='/movies/watchlist' render={(routerProps) => <WatchList {...routerProps} currentUser={this.state.loggedUser} watchlist={this.state.watchlist} delete={this.deleteWatchlistItem}/>} />
       <Route exact path='/movies/:id' render={(routerProps) => <MovieShowPage {...routerProps} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser}/>} />
