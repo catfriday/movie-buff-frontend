@@ -8,7 +8,7 @@ const WatchList = (props) => {
         <div>
             {props.watchlist.map(movie =>
             <div>
-              <p>{movie.id}</p>
+              <p>{movie.title}</p>
               <button onClick={() => props.delete(movie)}>Delete From Watchlist</button>
            </div>
                 )} 

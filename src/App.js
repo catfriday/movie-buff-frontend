@@ -39,7 +39,6 @@ state = {
   movie: {},
   sort: "",
   filterType: "All"
-
  
 }
 
@@ -216,47 +215,62 @@ fetch(moviesUrl + this.state.movie.id, {
   .then(console.log)
 }
 
-
- increaseLikes = (movie) =>{
-   fetch(moviesUrl + movie.id, {
+ increaseLikes = (id, likes) =>{
+   console.log("clicked")
+   fetch(moviesUrl + id, {
      method: 'PATCH', 
      headers:{
       'Content-Type': 'application/json',
       Accept: 'application/json'
      },
      body: JSON.stringify({
-       likes: movie.likes + 1
+       likes: likes + 1
      })
    })
    .then(resp => resp.json())
-   .then (likes => console.log(likes))
+   .then(movie => this.setState({
+      movies: this.state.filteredMovies.map(movie => {
+      if (movie.id === id){
+        movie.likes += 1
+      }
+      return movie
+    })
+  }))
+     
  }
 
- disLikes = (movie) =>{
-  fetch(moviesUrl + movie.id, {
+ disLikes = (id, dislikes) =>{
+  console.log("clicked")
+  fetch(moviesUrl + id, {
     method: 'PATCH', 
     headers:{
      'Content-Type': 'application/json',
      Accept: 'application/json'
     },
     body: JSON.stringify({
-      dislikes: movie.dislikes + 1
+      dislikes: dislikes + 1
     })
   })
   .then(resp => resp.json())
-  .then (dislikes => console.log(dislikes))
+  .then(movie => this.setState({
+    movies: this.state.filteredMovies.map(movie => {
+      if (movie.id === id){
+        movie.dislikes += 1
+      }
+      return movie
+    })}))
 }
 
 handleSort = (value) => {
   //console.log(value)
   if(value === 'Alphabetically'){
     this.setState({
-      movies: this.state.movies.sort((a,b) => a.title > b.title? 1: -1),
+      filteredMovies: this.state.movies.sort((a,b) => a.title > b.title? 1: -1),
       sort: "Alphabetically"
     })
   } else {
     this.setState({
-      movies: this.state.movies.sort((a,b) => a.likes > b.likes? 1: -1),
+      filteredMovies: this.state.movies.sort((a,b) => a.likes > b.likes? 1: -1),
       sort: 'Likes'
     })
 

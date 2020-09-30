@@ -44,9 +44,9 @@ render(){
 
                         <div class="likes-section">
                                 <span className="likes">{`${this.props.movie.likes} Likes`}</span><br/>
-                                <span onClick={() => this.props.likes(this.props.movie)} className="like-button">&#127871;</span><br></br>
+                                <span onClick={() => this.props.likes(this.props.movie.id, this.props.movie.likes)} className="like-button">&#127871;</span><br></br>
                                 <span className="likes">{`${this.props.movie.dislikes} Dislikes`}</span>
-                                <span onClick={() => this.props.dislikes(this.props.movie)}  className="like-button" >&#128530;</span>
+                                <span onClick={() => this.props.dislikes(this.props.movie.id, this.props.movie.dislikes)}  className="like-button" >&#128530;</span>
                         </div>
                         {this.props.movie.user_id === this.props.currentUser.id ? 
                         <p>Your Recomendation</p>
