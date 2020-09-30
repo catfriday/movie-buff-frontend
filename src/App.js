@@ -270,7 +270,7 @@ handleSort = (value) => {
     })
   } else {
     this.setState({
-      filteredMovies: this.state.movies.sort((a,b) => a.likes > b.likes? 1: -1),
+      filteredMovies: this.state.movies.sort((a,b) => a.likes < b.likes? 1: -1),
       sort: 'Likes'
     })
 
