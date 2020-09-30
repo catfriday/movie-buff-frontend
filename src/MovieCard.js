@@ -37,25 +37,28 @@ render(){
     
     return(
      <div  className='card'>
-        <h2>{title}</h2> 
-           <img onClick={this.handleClick} src= {image} height="250px" width="200px"></img>
-           <div className="myDIV">
-                <div className="hide">
-
-                        <div class="likes-section">
-                                <span className="likes">{`${this.props.movie.likes} Likes`}</span><br/>
-                                <span onClick={() => this.props.likes(this.props.movie)} className="like-button">&#127871;</span><br></br>
-                                <span className="likes">{`${this.props.movie.dislikes} Dislikes`}</span>
-                                <span onClick={() => this.props.dislikes(this.props.movie)}  className="like-button" >&#128530;</span>
-                        </div>
-                        {this.props.movie.user_id === this.props.currentUser.id ? 
-                        <p>Your Recomendation</p>
-                        :
-                        <button onClick={() => this.props.addToWatchList(this.props.movie)}>Add to Watchlist</button>}
-                
-                 </div>   
+        <h3>{title}</h3> 
+            <div className='image'>
+            <img onClick={this.handleClick} src= {image} height="270px" width="200px"></img>
             </div>
-    </div> 
+           
+                    <div class="likes-section">
+                            <span >{`${this.props.movie.likes} Likes`}</span> 
+                            <span className="likes introwrapper" onClick={() => this.props.likes(this.props.movie)} >&#127871;</span><br></br>
+                            <span >{`${this.props.movie.dislikes} Dislikes`}</span>
+                            <span className="likes introwrapper" onClick={() => this.props.dislikes(this.props.movie)}   >&#128530;</span>
+                    </div>
+
+                        <div>
+                            {this.props.movie.user_id === this.props.currentUser.id ? 
+                            <p>Your Recomendation</p>
+                            :
+                            <button onClick={() => this.props.addToWatchList(this.props.movie)}>Add to Watchlist</button>}
+                        </div>
+                
+     </div>   
+            
+    
                 
     )
 }
