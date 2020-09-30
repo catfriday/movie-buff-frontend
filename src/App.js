@@ -14,6 +14,7 @@ import MovieCard from './MovieCard';
 import EditForm from './EditForm';
 import Header from './Header'
 import HomePage from './HomePage';
+import 'semantic-ui-css/semantic.min.css'
 
 
 
@@ -240,7 +241,7 @@ patchMovie = () => {
 
 let review =  this.state.movie.review
 
-fetch(moviesUrl + this.state.id, {
+fetch(moviesUrl + this.state.movie.id, {
     method: 'PATCH',
     headers:{
       'Content-Type': 'application/json',
@@ -294,9 +295,9 @@ render(){
     <BrowserRouter>
     <Header /> 
   
+    <div className="grid-container">
      <SideBar currentUser={this.state.loggedUser} userMovie={this.state.userMovie} watchlistButton={this.watchlistMovie} />
 
-    <div className="App">
      {/* <WatchList currentUser={this.state.loggedUser} /> */}
        <Switch>
       <Route path='/home' render={(routerProps) => <HomePage {...routerProps} />} />

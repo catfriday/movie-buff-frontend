@@ -8,13 +8,7 @@ const MoviePage = (props) => {
   
 
     return (
-        <div>
-            <div>
-               
-
-
-            </div>
-            <Link to="/movies/new"> Add New Movie </Link><br></br>
+        <div className='item3'>
             
             {props.movies.map(movie => <MovieCard key={movie.id} movie={movie} addToWatchList={props.addToWatchList} history={props.history} currentUser={props.currentUser} likes={props.likes} dislikes={props.dislikes}/>)}
         
