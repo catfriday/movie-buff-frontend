@@ -1,32 +1,140 @@
+.App{
+  background-color: black;
+  color: white;
+  font-family: monospace;
+}
+
+.login{
+height:1000px;
+background-color: black; 
+text-align: center;
+}
+
+.welcome:hover{
+  color:red;
+  cursor: pointer;
+}
 .card {
+  font-family: monospace;
   text-align: center;
-  
+  background-color: black;
+  color:white;
   padding: 1rem;
-  width: 15rem;
-  height: 23rem;
+  width: 18rem;
+  height: 28rem;
   display: inline-grid;
-  margin: 1rem 2rem;
-  /* box-shadow: 3px 4px #e04b52 */
+  margin: 4rem 4rem; 
+   /* box-shadow: 3px 4px #e04b52; */
+    
+}  
+.card:hover{
+/* border: grey solid 1px;  */
+box-shadow: 3px 4px black;
+border: grey solid 1px;
+
 }
 
-/* .card:hover{
-border: grey solid 1px; 
-box-shadow: 3px 4px black
+.likes{
+  cursor: pointer;
+  font-size:25px;
+}
 
-} */
-/* .hide {
-  display: none;
-} */
-
-/* .myDIV  {
-  display: none;
+.watchlist{
+  /* cursor: pointer;
+  background-color: black;
+  color: white;
+  font-family: monospace; */
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 5px 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
   
+  cursor: pointer;
 }
-.myDIV:hover{
-  display:block;
-  border: grey solid 1px; 
-box-shadow: 3px 4px black
+
+.watchlist:hover{
+  background-color: white;
+  color: black;
+}
+
+.movie-show{
+  justify-content: center;
+  text-align: center;
+
+}
+
+.trailer{
+  margin:center
+}
+
+input[type=text], select {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 30%;
+  background-color: red;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: rgb(148, 7, 7);
+}
+
+/* input[type=text] {
+  border: 2px solid red;
+  border-radius: 4px;
 } */
+
+input[type=text]:focus {
+  border: 5px solid red;
+}
+
+input[type="text"] {
+  font-family: monospace;
+  font-size: 25px;
+  color: black;
+}
+
+.pwd {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.pwd:focus {
+  border: 5px solid red;
+}
+
+.pwd {
+  font-family: monospace;
+  font-size: 25px;
+  color: black;
+}
+
+.movie-title{
+  font-weight: bolder;
+  font-size: 22px;
+}
 
 #horoscope-header {
   display: flex;
@@ -40,6 +148,13 @@ box-shadow: 3px 4px black
   /* padding: 3rem; */
 }
 
+.likes-name{
+  font-size: 15px;
+  font-weight: bold;
+}
 
 
+.form{
+  justify-content: center;
+}
 

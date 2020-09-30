@@ -313,7 +313,7 @@ render(){
       <Route exact path='/movies' render={(routerProps) => <MoviePage {...routerProps} likes={this.increaseLikes} dislikes={this.disLikes} movies={this.state.filteredMovies} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser} />} />
       <Route path ="/movies/new" render={(routerProps) => <MovieForm {...routerProps} addMovie={this.addMovie} title={this.state.titleFormState} movie={this.state.movie} updateMyMovie={this.updateMyMovie}/>} />
       <Route path='/movies/watchlist' render={(routerProps) => <WatchList {...routerProps} currentUser={this.state.loggedUser} watchlist={this.state.watchlist} delete={this.deleteWatchlistItem}/>} />
-      <Route exact path='/movies/:id' render={(routerProps) => <MovieShowPage {...routerProps} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser}/>} />
+      <Route exact path='/movies/:id' render={(routerProps) => <MovieShowPage {...routerProps} likes={this.increaseLikes} dislikes={this.disLikes} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser}/>} />
       <Route path='/my-movies' render={(routerProps) => <MyMovies {...routerProps} movies={this.state.userMovie} deleteMyMovie={this.deleteMyMovie} updateMyMovie={this.updateMyMovie}/>}/>
       <Route path='/edit-my-movie' render={(routerProps) => <EditForm {...routerProps} handleChange={this.handleChange} movie={this.state.movie} patch={this.patchMovie}/>} />
     </Switch> 
