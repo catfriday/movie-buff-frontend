@@ -5,7 +5,7 @@ const Header = (props) => {
         <div>
 
                 <div id="horoscope-header">
-                <img src= "https://document-export.canva.com/DAEJOO-PZD0/9/thumbnail/m3_dBrsBtOBvY1xbgjbOvw-0001-11494487880.png" width="250" height="250" className="marginauto" alt="centered image"></img>
+                <img id='logo' src={require(`/Users/catrinafriday/Development/code/mod-4-proj-movie-buff/movie-buff-frontend/frontened-movie-buff/src/Copy of Copy of Weaving sories.png`)}  className="marginauto" alt="centered image"></img>
                 </div>
 
         </div>

@@ -242,7 +242,8 @@ textarea[type=text], select {
 
 .item2{
   background-color: black;
-  color: white
+  color: white;
+  font-size: 18px;
 }
 
 select {
@@ -280,4 +281,12 @@ select {
 
 .form{
   padding-left: 20px;
+}
+
+#logo{
+  /* justify-content: center; */
+  position:absolute;
+  top:-185px; 
+  width:625px; 
+  height:625px
 }
