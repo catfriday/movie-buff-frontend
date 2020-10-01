@@ -131,6 +131,8 @@ addMovie = (e) => {
     image: e.target[3].value,
     video_link: e.target[4].value,
     movie_info: e.target[5].value,
+    likes: 0,
+    dislikes:0
   }
   fetch(moviesUrl, {
     method: 'POST',
@@ -147,6 +149,7 @@ addMovie = (e) => {
     console.log(newMovie)
     this.setState({
     movies: [...this.state.movies, newMovie],
+    filteredMovies: [...this.state.filteredMovies, newMovie],
     movieForm: !this.state.form
   })}
 
@@ -329,7 +332,7 @@ render(){
       <Route path='/home' render={(routerProps) => <HomePage {...routerProps} />} />
       <Route path='/signup' render={(routerProps) => <SignUp {...routerProps} createUser={this.createUser}/>} />
       <Route path='/login' render={(routerProps) => <LogIn {...routerProps} logIn={this.logInUser} />} />
-      <Route exact path='/movies' render={(routerProps) => <MoviePage {...routerProps} handleSort={this.handleSort} sort={this.state.sort} handleFilter={this.handleFilter} likes={this.increaseLikes} dislikes={this.disLikes} filtermovies={this.state.filteredMovies} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser} movies={this.state.movies} />} />
+      <Route exact path='/movies' render={(routerProps) => <MoviePage {...routerProps} handleSort={this.handleSort} sort={this.state.sort} handleFilter={this.handleFilter} likes={this.increaseLikes} dislikes={this.disLikes} filtermovies={this.state.filteredMovies} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser} movies={this.state.filteredMovies} />} />
       <Route path ="/movies/new" render={(routerProps) => <MovieForm {...routerProps} addMovie={this.addMovie} title={this.state.titleFormState} movie={this.state.movie} updateMyMovie={this.updateMyMovie}/>} />
       <Route path='/movies/watchlist' render={(routerProps) => <WatchList {...routerProps} currentUser={this.state.loggedUser} watchlist={this.state.watchlist} delete={this.deleteWatchlistItem}/>} />
       <Route exact path='/movies/:id' render={(routerProps) => <MovieShowPage {...routerProps} likes={this.increaseLikes} dislikes={this.disLikes} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser}/>} />
