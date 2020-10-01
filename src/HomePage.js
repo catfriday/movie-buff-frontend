@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 const HomePage = (props) => {
     return (
         <div className='login'>
-            <h1>Welcome!</h1>
+            <h1 className='welcome'>Welcome!</h1>
                 <h2 className='welcome'
                         type="button"
                         onClick={(e) => {
@@ -18,7 +18,7 @@ const HomePage = (props) => {
                         type="button"
                         onClick={(e) => {
                         e.preventDefault();
-                        window.location.href='/login';
+                        window.location.href='/signup';
                         }}
                 > Sign Up</h2>
 

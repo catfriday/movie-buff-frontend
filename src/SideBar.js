@@ -17,11 +17,11 @@ const SideBar = (props) => {
     // }
 
     return(
-        <div >
+        <div className='item2'>
             {/* <button onClick={props.watchlistButton, handleClick}>See My Watch List</button> */}
             {/* <Link to="/movies/watchlist"> Show My Watchlist </Link><br></br>
             <Link to="/my-movies"> Show My Movies </Link> */}
-        <ProSidebar classNmae='item2'>
+        <ProSidebar className='item2'>
             <Menu iconShape="square">
                 {/* <MenuItem >Dashboard</MenuItem> */}
                 <SubMenu title="Menu" >

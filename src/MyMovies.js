@@ -15,7 +15,7 @@ const MyMovies = (props) => {
             <div  className='card'>
                      <h3 className='movie-title'>{movie.title}</h3> 
                 <div className='image'>
-                        <img  src= {movie.image} height="270px" width="200px"></img>
+                        <img className='movie-poster'   src= {movie.image} height="340px" width="265px"></img>
                 </div>
 
                 <div class="likes-section">
@@ -26,12 +26,12 @@ const MyMovies = (props) => {
                  </div>
 
                     <div>
-                        <p className='watchlist' onClick= {
+                        <p className='delete' onClick= {
                             () => {props.updateMyMovie(movie)
                              handleClick()
                                 }}>Update Movie</p>
 
-                        <p className='watchlist' onClick={
+                        <p className='delete' onClick={
                             () => props.deleteMyMovie(movie)
                                 }>Delete Movie</p>
                     </div>

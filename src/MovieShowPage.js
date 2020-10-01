@@ -10,7 +10,7 @@ const MovieShowPage = (props) => {
     return(
 
      <div className='movie-show'>
-        <h1 className='movie-title'>{props.location.movie.title}</h1>
+        <h1 className='movie-show-title'>{props.location.movie.title}</h1>
             
             <div>
             <Iframe url={props.location.movie.video_link}
@@ -21,14 +21,17 @@ const MovieShowPage = (props) => {
                     display="initial"
                     allow="fullscreen"
                     position="relative"/>
+           
+                <img src= {props.location.movie.image} height="455px" width="390px"></img>
             </div>
 
-            <div>
-                <img src= {props.location.movie.image} height="250px" width="200px"></img>
+            <div className='movie-info'>
+                    <h3 className='review' >{props.location.movie.genre}</h3>
+                        <p> {props.location.movie.movie_info}</p>
+                             <p className='review' >Review</p>
+                             <p>{props.location.movie.review}</p>
+
             </div>
-                    <h3>{props.location.movie.genre}</h3>
-                        <p> Movie Info:{props.location.movie.movie_info}</p>
-                             <p>Review: {props.location.movie.review}</p>
             <div>
                 {props.location.movie.user_id === props.currentUser.id ? 
                 <p>Your Recomendation</p>

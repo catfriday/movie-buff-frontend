@@ -143,10 +143,14 @@ addMovie = (e) => {
     )
   })
   .then(res => res.json())
-  .then( this.setState({
+  .then(newMovie => {
+    console.log(newMovie)
+    this.setState({
     movies: [...this.state.movies, newMovie],
     movieForm: !this.state.form
-  })
+  })}
+
+ 
   )
 }
 
@@ -307,25 +311,25 @@ render(){
   return (
     <BrowserRouter>
     <Header /> 
-  {
+  {/* {
     this.state.currentUser ? 
     <div>
-      <SearchBar handleSort={this.handleSort} sort={this.state.sort} handleFilter={this.handleFilter}  />
-      <SideBar currentUser={this.state.loggedUser} userMovie={this.state.userMovie} watchlistButton={this.watchlistMovie} />
 
     </div>
     : null 
-
-  }
+    
+  } */}
 
     <div className="App">
+        {/* <SearchBar handleSort={this.handleSort} sort={this.state.sort} handleFilter={this.handleFilter}  /> */}
+        <SideBar currentUser={this.state.loggedUser} userMovie={this.state.userMovie} watchlistButton={this.watchlistMovie} />
        <Switch>
   
 
       <Route path='/home' render={(routerProps) => <HomePage {...routerProps} />} />
       <Route path='/signup' render={(routerProps) => <SignUp {...routerProps} createUser={this.createUser}/>} />
       <Route path='/login' render={(routerProps) => <LogIn {...routerProps} logIn={this.logInUser} />} />
-      <Route exact path='/movies' render={(routerProps) => <MoviePage {...routerProps} likes={this.increaseLikes} dislikes={this.disLikes} movies={this.state.filteredMovies} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser} />} />
+      <Route exact path='/movies' render={(routerProps) => <MoviePage {...routerProps} handleSort={this.handleSort} sort={this.state.sort} handleFilter={this.handleFilter} likes={this.increaseLikes} dislikes={this.disLikes} filtermovies={this.state.filteredMovies} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser} movies={this.state.movies} />} />
       <Route path ="/movies/new" render={(routerProps) => <MovieForm {...routerProps} addMovie={this.addMovie} title={this.state.titleFormState} movie={this.state.movie} updateMyMovie={this.updateMyMovie}/>} />
       <Route path='/movies/watchlist' render={(routerProps) => <WatchList {...routerProps} currentUser={this.state.loggedUser} watchlist={this.state.watchlist} delete={this.deleteWatchlistItem}/>} />
       <Route exact path='/movies/:id' render={(routerProps) => <MovieShowPage {...routerProps} likes={this.increaseLikes} dislikes={this.disLikes} addToWatchList={this.addToWatchList} currentUser={this.state.loggedUser}/>} />

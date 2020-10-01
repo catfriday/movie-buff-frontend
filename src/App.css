@@ -8,11 +8,16 @@
 height:1000px;
 background-color: black; 
 text-align: center;
+
 }
 
+.welcome{
+  font-size: 50px;
+}
 .welcome:hover{
   color:red;
   cursor: pointer;
+ 
 }
 .card {
   font-family: monospace;
@@ -24,15 +29,23 @@ text-align: center;
   height: 28rem;
   display: inline-grid;
   margin: 4rem 4rem; 
+  cursor: pointer;
    /* box-shadow: 3px 4px #e04b52; */
     
 }  
-.card:hover{
+/* .card:hover{ */
 /* border: grey solid 1px;  */
-box-shadow: 3px 4px black;
+/* box-shadow: 3px 4px black;
 border: grey solid 1px;
 
-}
+} */
+
+.movie-poster:hover{
+  /* border: grey solid 1px;  */
+  /* box-shadow: 3px 4px red; */
+  border: red solid 2px;
+  
+  }
 
 .likes{
   cursor: pointer;
@@ -44,26 +57,42 @@ border: grey solid 1px;
   background-color: black;
   color: white;
   font-family: monospace; */
-  background-color: black;
-  border: none;
+  /* background-color: black; */
+  /* border: none; */
   color: white;
   padding: 5px 8px;
-  text-align: center;
+  /* text-align: center; */
   text-decoration: none;
   display: inline-block;
-  font-size: 15px;
+  font-size: 18px;
+  font-weight: bold;
   
   cursor: pointer;
 }
 
 .watchlist:hover{
-  background-color: white;
-  color: black;
+  /* background-color: white; */
+  color: red;
+}
+.delete:hover{
+  color: red;
+}
+
+.delete{
+  color: white;
+  padding: 5px 8px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .movie-show{
+  background-color: black;
   justify-content: center;
   text-align: center;
+  /* height: 700px; */
 
 }
 
@@ -111,6 +140,26 @@ input[type="text"] {
   color: black;
 }
 
+textarea[type="text"]{
+  font-family: monospace;
+  font-size: 25px;
+  color: black;
+}
+
+textarea[type=text]:focus {
+  border: 5px solid red;
+}
+
+textarea[type=text], select {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
 .pwd {
   width: 50%;
   padding: 12px 20px;
@@ -132,8 +181,9 @@ input[type="text"] {
 }
 
 .movie-title{
+  font-family: Arial, Helvetica, sans-serif;
   font-weight: bolder;
-  font-size: 22px;
+  font-size: 25px;
 }
 
 #horoscope-header {
@@ -141,7 +191,7 @@ input[type="text"] {
   justify-content: center;
   background:black;
   border: white solid 1px;
-  opacity: .9;
+  /* opacity: .9; */
   height: 16rem;
   box-shadow: 15px 10px 5px white;
   /* border-radius: 15px; */
@@ -154,9 +204,7 @@ input[type="text"] {
 }
 
 
-.form{
-  justify-content: center;
-}
+
 
 .nav-bar{
   background-color: purple;
@@ -165,9 +213,71 @@ input[type="text"] {
 
 .search-bar{
   background-color:black;
-  justify-content: center;
+  /* justify-content: center; */
   color:white;
-  height:200px;
+  height:75px;
   margin-top:50px;
   display: relative;
+  left:40%;
+  position:absolute;
+  top:250px;
+}
+
+.likes-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  color:whit;
+  /* border-top: .5px solid white; */
+  
+}
+
+.card-button{
+  width: 100%;
+  /* border-top: .5px solid white; */
+  padding: 3px;
+  margin-top: 5px;
+}
+
+.item2{
+  background-color: black;
+  color: white
+}
+
+select {
+  width:200px;
+  height: 45px;
+  font-size: 15px;
+}
+
+.movie-info{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.review{
+  font-size: 33px;
+  font-weight: bold;
+  color: red
+}
+
+.movie-show-title{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 50;
+  color:red;
+  font-weight: bold;
+}
+
+.update-form{
+  
+  padding-left: 20px;
+  /* background-color: black;
+  left:40%;
+  position:absolute;
+  top:250px; */
+}
+
+.form{
+  padding-left: 20px;
 }

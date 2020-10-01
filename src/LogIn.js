@@ -10,7 +10,7 @@ const LogIn = (props) => {
 
     return(
         <div className='login'>
-            <h3>Log In Here</h3>
+            <h3 className='welcome'>Log In Here</h3>
             <form onSubmit={(e)=> {
                 props.logIn(e)
                 handleSubmit()}}>

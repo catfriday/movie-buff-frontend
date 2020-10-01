@@ -9,7 +9,7 @@ const SignUp = (props) => {
 
     return(
         <div className='login'>
-            <h3>Sign Up Here</h3>
+            <h3 className='welcome'>Sign Up Here</h3>
             <form onSubmit={(e)=> {
                 props.createUser(e)
                 handleSubmit() } 

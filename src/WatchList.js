@@ -10,7 +10,7 @@ const WatchList = (props) => {
             <div  className='card'>
                 <h3 className='movie-title'>{movie.title}</h3> 
                     <div className='image'>
-                        <img  src= {movie.image} height="270px" width="200px"></img>
+                        <img className='movie-poster'  src= {movie.image} height="340px" width="265px"></img>
                     </div>
                     <div class="likes-section">
                         <span className='likes-name'>{`${movie.likes} Likes`}</span> 

@@ -39,19 +39,19 @@ render(){
      <div  className='card'>
         <h3 className='movie-title'>{title}</h3> 
             <div className='image'>
-            <img onClick={this.handleClick} src= {image} height="270px" width="200px"></img>
+            <img className='movie-poster' onClick={this.handleClick} src= {image} height="340px" width="265px"></img>
             </div>
            
-                    <div class="likes-section">
+                    <div className="likes-section">
                             <span className='likes-name'>{`${this.props.movie.likes} Likes`}</span> 
                             <span className="likes introwrapper" onClick={() => this.props.likes(this.props.movie.id, this.props.movie.likes)} >&#127871;</span><br></br>
                             <span className='likes-name'>{`${this.props.movie.dislikes} Dislikes`}</span>
                             <span className="likes introwrapper" onClick={() => this.props.dislikes(this.props.movie.id, this.props.movie.disliks)}   >&#128530;</span>
                     </div>
 
-                        <div>
+                        <div className='card-button'>
                             {this.props.movie.user_id === this.props.currentUser.id ? 
-                            <p>Your Recomendation</p>
+                            <p className='watchlist'>Your Recomendation</p>
                             :
                             <p className='watchlist' onClick={() => this.props.addToWatchList(this.props.movie)}>Add to Watchlist</p>}
                         </div>

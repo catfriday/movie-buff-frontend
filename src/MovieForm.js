@@ -19,7 +19,7 @@ export default class MovieForm extends React.Component{
               }>
                    <input type='text' placeholder='Movie Title' name='title'  /><br></br><br></br>
                    <input type='text' placeholder='Genre' name='genre'  /><br></br><br></br>
-                   <input type='text' placeholder='Review'name='review'  /><br></br><br></br>
+                   <textarea type='text' placeholder='Review'name='review'  /><br></br><br></br>
                    <input type='text' placeholder='Movie Poster Url' name='image'  /><br></br><br></br>
                    <input type='text' placeholder='Trailer Url' name='video_link'  /><br></br><br></br>
                    <input type='text' placeholder='Movie Info' name='movie_info'  /><br></br><br></br>
@@ -31,3 +31,4 @@ export default class MovieForm extends React.Component{
     }
 
 }
+{/* <textarea type='text' placeholder='Review'name='review' /><br></br><br></br> */}
