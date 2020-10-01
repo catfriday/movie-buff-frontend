@@ -37,6 +37,10 @@ const SideBar = (props) => {
                     Add A Movie
                     <Link to="/movies/new"/>
                 </MenuItem>
+                <MenuItem>
+                    All Movies
+                    <Link to="/movies"/>
+                </MenuItem>
                 </SubMenu>
             </Menu>
         </ProSidebar>

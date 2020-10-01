@@ -316,7 +316,7 @@ render(){
     <Header /> 
   {/* {
     this.state.currentUser ? 
-    <div>
+    <fragment>
 
     </div>
     : null 

@@ -11,7 +11,12 @@ const EditForm = (props) => {
     return(
         <div className='update-form'>
               <h1>Update Movie</h1>
-              <form  onSubmit={() => props.patch(props.movie)}>
+              <form  onSubmit={() => {
+                  props.patch(props.movie)
+                  handleSubmit()
+            
+              }
+            }>
                    <input disabled="disabled" type='text' placeholder='Movie Title' name='title' value={props.movie.title} onChange={(e) => props.handleChange(e)} /><br></br><br></br>
 
                    <input disabled="disabled" type='text' placeholder='Genre' name='genre' value={props.movie.genre} onChange={(e) => props.handleChange(e)} /><br></br><br></br>

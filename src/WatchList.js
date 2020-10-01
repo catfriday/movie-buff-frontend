@@ -4,13 +4,21 @@ import { Link }  from 'react-router-dom'
 
 const WatchList = (props) => {
     // console.log(props.movie)
+
+    const handleImageClick = (movie) =>{
+        console.log(movie)
+         props.history.push({
+             pathname:`/movies/${movie.id}`,
+             movie: movie})
+     }
+
     return (
         <div>
             {props.watchlist.map(movie =>
             <div  className='card'>
                 <h3 className='movie-title'>{movie.title}</h3> 
                     <div className='image'>
-                        <img className='movie-poster'  src= {movie.image} height="340px" width="265px"></img>
+                        <img onClick={() => handleImageClick(movie)} className='movie-poster'  src= {movie.image} height="340px" width="265px"></img>
                     </div>
                     <div class="likes-section">
                         <span className='likes-name'>{`${movie.likes} Likes`}</span> 

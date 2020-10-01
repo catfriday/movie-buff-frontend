@@ -8,6 +8,15 @@ const MyMovies = (props) => {
                 pathname:`/edit-my-movie`
                })
         }
+
+       const handleImageClick = (movie) =>{
+           console.log(movie)
+            props.history.push({
+                pathname:`/movies/${movie.id}`,
+                movie: movie})
+        }
+
+
     return(
         <div>
             {props.movies.map( movie => 
@@ -15,7 +24,7 @@ const MyMovies = (props) => {
             <div  className='card'>
                      <h3 className='movie-title'>{movie.title}</h3> 
                 <div className='image'>
-                        <img className='movie-poster'   src= {movie.image} height="340px" width="265px"></img>
+                        <img onClick={ () => handleImageClick (movie)} className='movie-poster'   src= {movie.image} height="340px" width="265px"></img>
                 </div>
 
                 <div class="likes-section">
