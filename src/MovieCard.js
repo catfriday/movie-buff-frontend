@@ -27,6 +27,14 @@ class MovieCard extends React.Component  {
 //     })
 // }
 
+handleImageClick = () =>{
+    
+     this.props.history.push({
+         pathname:'/movies/watchlist'
+      })
+ }
+
+
 render(){
 
     let  {title, genre, review, image, video_link, movie_info, likes, dislikes } = this.props.movie
@@ -51,7 +59,7 @@ render(){
 
                         <div className='card-button'>
                             {this.props.movie.user_id === this.props.currentUser.id ? 
-                            <p className='watchlist'>Your Recomendation</p>
+                            <p className='recomendation'>Your Recomendation</p>
                             :
                             <p className='watchlist' onClick={() => this.props.addToWatchList(this.props.movie)}>Add to Watchlist</p>}
                         </div>

@@ -116,7 +116,7 @@ addToWatchList = (movie) => {
     })
   })
   .then(resp => resp.json())
-  .then(console.log)
+  .then(console.log())
 }
 
 addMovie = (e) => {
@@ -150,7 +150,8 @@ addMovie = (e) => {
     this.setState({
     movies: [...this.state.movies, newMovie],
     filteredMovies: [...this.state.filteredMovies, newMovie],
-    movieForm: !this.state.form
+    movieForm: !this.state.form,
+    userMovie:[...this.state.userMovie, newMovie]
   })}
 
  
@@ -225,7 +226,9 @@ fetch(moviesUrl + this.state.movie.id, {
     })
   })
   .then(res => res.json())
-  .then(console.log)
+  .then(review => this.setState({
+    movies:  this.state.movies.map(movie => {return {...movie, review}})
+  }))
 }
 
  increaseLikes = (id, likes) =>{

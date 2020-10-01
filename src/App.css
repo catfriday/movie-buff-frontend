@@ -74,6 +74,15 @@ border: grey solid 1px;
   /* background-color: white; */
   color: red;
 }
+.recomendation{
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5px 8px;
+}
+
 .delete:hover{
   color: red;
 }
