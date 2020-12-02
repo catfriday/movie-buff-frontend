@@ -1,11 +1,12 @@
 import React from 'react'
+import headerPhoto from './headerPhoto.png'
 
 const Header = (props) => {
     return(
         <div>
 
                 <div id="horoscope-header">
-                <img id='logo' src={require(`/Users/catrinafriday/Development/code/mod-4-proj-movie-buff/movie-buff-frontend/frontened-movie-buff/src/Copy of Copy of Weaving sories.png`)}  className="marginauto" alt="centered image"></img>
+                <img id='logo' src={headerPhoto}  className="marginauto" alt="centered image"></img>
                 </div>
 
         </div>

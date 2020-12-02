@@ -316,7 +316,7 @@ render(){
  
   return (
     <BrowserRouter>
-    <Header /> 
+    <Header/> 
   {/* {
     this.state.currentUser ? 
     <fragment>
